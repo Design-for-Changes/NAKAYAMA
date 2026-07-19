@@ -77,12 +77,6 @@ function App() {
         {page === 'reserve' && <ReservePage />}
       </main>
       <Footer />
-      {page !== 'reserve' && (
-        <a className="mobile-reserve" href="#/reserve">
-          ご予約について
-          <Arrow />
-        </a>
-      )}
     </div>
   )
 }
@@ -101,7 +95,7 @@ function Header({
   openingComplete: boolean
 }) {
   return (
-    <header className={`site-header ${homeMode ? 'is-home-header' : ''} ${homeMode && !openingComplete ? 'is-opening' : ''}`}>
+    <header className={`site-header ${homeMode ? 'is-home-header' : ''} ${homeMode && !openingComplete ? 'is-opening' : ''} ${menuOpen ? 'menu-open' : ''}`}>
       <a className="brand-link" href="#/" aria-label="NAKAYAMA da arte ホーム">
         <img src={brand} alt="NAKAYAMA da arte" />
       </a>
