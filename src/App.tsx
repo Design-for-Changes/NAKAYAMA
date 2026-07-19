@@ -365,7 +365,7 @@ function CuisinePage() {
 function ChefPage() {
   return (
     <>
-      <PageHero eyebrow="THE CHEF" title="中山友秀" image={chefTomohide} alt="シェフ 中山友秀" />
+      <PageHero eyebrow="THE CHEF" title="中山友秀" image={chefTomohide} alt="シェフ 中山友秀" portrait />
 
       <section className="chef-intro section-pad">
         <div>
@@ -685,9 +685,9 @@ function ReservePage() {
   )
 }
 
-function PageHero({ eyebrow, title, image, alt }: { eyebrow: string; title: string; image: string; alt: string }) {
+function PageHero({ eyebrow, title, image, alt, portrait = false }: { eyebrow: string; title: string; image: string; alt: string; portrait?: boolean }) {
   return (
-    <section className="page-hero">
+    <section className={`page-hero ${portrait ? 'is-portrait' : ''}`}>
       <div><p className="eyebrow">{eyebrow}</p><h1>{title}</h1></div>
       <img src={image} alt={alt} />
     </section>
