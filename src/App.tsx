@@ -281,7 +281,7 @@ function HomeOpening({ onProgress }: { onProgress: (complete: boolean) => void }
 function CuisinePage() {
   return (
     <>
-      <PageHero eyebrow="OUR CHALLENGE" title="NAKAYAMAの挑戦" image={touchDough} alt="生地の状態を指先で確かめる手元" />
+      <PageHero eyebrow="OUR CHALLENGE" title="NAKAYAMAの挑戦" image={handsWork} alt="手打ちパスタを仕立てる手元" />
 
       <section className="intro-grid section-pad">
         <p className="eyebrow">COOKING WITH WHAT IS HERE, TODAY</p>
@@ -292,40 +292,11 @@ function CuisinePage() {
         </div>
       </section>
 
-      <section className="process-section section-pad">
-        <div className="section-heading">
-          <p className="eyebrow">THREE CONTINUOUS DECISIONS</p>
-          <h2>料理のあいだ、判断は止まらない。</h2>
-          <p className="swipe-hint">指で横へスワイプ</p>
-        </div>
-        <div className="process-rail" aria-label="料理で大切にしている三つの判断">
-          <article>
-            <span>01 / TOUCH</span>
-            <h3>触れて、確かめる。</h3>
-            <p>水分、弾力、温度。手から伝わる小さな違いを、次の判断につなげます。</p>
-          </article>
-          <article>
-            <span>02 / TEMPERATURE</span>
-            <h3>変化を、見続ける。</h3>
-            <p>火にかけたあとも、状態は刻々と変わります。仕上がるまで目を離しません。</p>
-          </article>
-          <article>
-            <span>03 / TIMING</span>
-            <h3>瞬間を、選ぶ。</h3>
-            <p>次へ進む一秒は、毎日同じではありません。その日の最もよい瞬間を選びます。</p>
-          </article>
-        </div>
-      </section>
-
-      <section className="editorial-block dark-section">
-        <div className="editorial-image"><img src={risotto} alt="甲殻類の旨みを閉じ込めたイカスミのリゾット" /></div>
-        <div className="editorial-copy">
-          <p className="eyebrow">MANTECARE</p>
-          <h2>温度を、見続ける。</h2>
-          <p>ソースと素材をちょうどよく結びつけ、なめらかな一体感へ導く。そのためには、温度と水分の小さな変化を見逃せません。仕上がる瞬間まで、鍋のなかと向き合い続けます。</p>
-          <p>リゾットには、酒米の山田錦を使うこともあります。その粘りと芯の残り方を活かし、イタリアで身につけた技術を、日本の素材で組み立て直しています。</p>
-        </div>
-      </section>
+      <ScrollJourney
+        frames={cuisineFrames}
+        ariaLabel="食材に触れてから一皿が仕上がるまで"
+        className="cuisine-journey"
+      />
 
       <section className="dish-section section-pad">
         <div className="section-heading">
@@ -361,6 +332,50 @@ function CuisinePage() {
     </>
   )
 }
+
+type JourneyFrame = {
+  image: string
+  alt: string
+  label: string
+  number: string
+  title: string
+  body: string
+}
+
+const cuisineFrames: JourneyFrame[] = [
+  {
+    image: touchDough,
+    alt: '生地の状態を指先で確かめる手元',
+    label: 'TOUCH',
+    number: '01',
+    title: '触れて、状態を知る。',
+    body: '水分、弾力、温度。同じ食材でも一つひとつ違う小さな個性を、まず手から受け取ります。',
+  },
+  {
+    image: risotto,
+    alt: '甲殻類の旨みを閉じ込めたイカスミのリゾット',
+    label: 'TEMPERATURE',
+    number: '02',
+    title: '変化を、見続ける。',
+    body: '火にかけた瞬間から状態は変わり続けます。決められた時間ではなく、目の前の変化を見て次へ進みます。',
+  },
+  {
+    image: bisquePasta,
+    alt: 'ビスクソースと赤海老を合わせた手打ちパスタ',
+    label: 'MANTECARE',
+    number: '03',
+    title: 'ほどけたものを、ひとつの響きへ。',
+    body: '温度と水分を見極め、ソースと素材をなめらかに結びつける。山田錦も、その粘りと芯を活かして一体感へ導きます。',
+  },
+  {
+    image: tortellini,
+    alt: '赤海老とリコッタチーズのトルテッリーニ',
+    label: 'MOMENT',
+    number: '04',
+    title: '今日の、いちばんよい瞬間へ。',
+    body: '同じ作り方を繰り返すのではなく、その日の彼らが最もよく響く一秒を選び、一皿の演奏に仕上げます。',
+  },
+]
 
 function ChefPage() {
   return (
@@ -466,7 +481,7 @@ function CoursePage() {
   )
 }
 
-const experienceFrames = [
+const experienceFrames: JourneyFrame[] = [
   {
     image: asamaWinter,
     alt: '御代田から望む冬の浅間山',
@@ -509,7 +524,7 @@ function ExperiencePage() {
         title="NAKAYAMAでの体験"
         intro="お客様が御代田へ到着してから、食事の余韻とともに帰るまで。NAKAYAMAで過ごす、ひと晩の流れをご紹介します。"
       />
-      <ExperienceJourney />
+      <ScrollJourney frames={experienceFrames} ariaLabel="御代田で過ごすひと晩の流れ" />
 
       <section className="experience-notes section-pad">
         <div>
@@ -538,7 +553,7 @@ function ExperiencePage() {
   )
 }
 
-function ExperienceJourney() {
+function ScrollJourney({ frames, ariaLabel, className = '' }: { frames: JourneyFrame[]; ariaLabel: string; className?: string }) {
   const sectionRef = useRef<HTMLElement>(null)
   const [progress, setProgress] = useState(0)
 
@@ -564,14 +579,14 @@ function ExperienceJourney() {
     }
   }, [])
 
-  const position = progress * (experienceFrames.length - 1)
+  const position = progress * (frames.length - 1)
   const activeFrame = Math.round(position)
 
   return (
-    <section className="experience-journey" ref={sectionRef} aria-label="御代田で過ごすひと晩の流れ">
+    <section className={`experience-journey ${className}`.trim()} ref={sectionRef} aria-label={ariaLabel}>
       <div className="experience-sticky">
         <div className="experience-images" aria-hidden="true">
-          {experienceFrames.map((item, index) => (
+          {frames.map((item, index) => (
             <img
               key={item.label}
               src={item.image}
@@ -582,17 +597,17 @@ function ExperienceJourney() {
         </div>
         <div className="experience-shade" />
         <div className="experience-copy">
-          <div className="experience-count"><strong>{experienceFrames[activeFrame].number}</strong><span>/ 04</span></div>
+          <div className="experience-count"><strong>{frames[activeFrame].number}</strong><span>/ {String(frames.length).padStart(2, '0')}</span></div>
           <div className="experience-words" aria-live="polite">
-            <article className="is-active" key={experienceFrames[activeFrame].label}>
-              <p className="eyebrow">{experienceFrames[activeFrame].label}</p>
-              <h2>{experienceFrames[activeFrame].title}</h2>
-              <p>{experienceFrames[activeFrame].body}</p>
+            <article className="is-active" key={frames[activeFrame].label}>
+              <p className="eyebrow">{frames[activeFrame].label}</p>
+              <h2>{frames[activeFrame].title}</h2>
+              <p>{frames[activeFrame].body}</p>
             </article>
           </div>
         </div>
         <div className="experience-track" aria-hidden="true"><span style={{ transform: `scaleY(${progress})` }} /></div>
-        <img className="story-accessible-image" src={experienceFrames[activeFrame].image} alt={experienceFrames[activeFrame].alt} />
+        <img className="story-accessible-image" src={frames[activeFrame].image} alt={frames[activeFrame].alt} />
       </div>
     </section>
   )
