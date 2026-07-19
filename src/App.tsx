@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 import brand from './assets/nakayama/brand.svg'
 import handsHero from './assets/nakayama/hands-hero.jpg'
 import handsWork from './assets/nakayama/hands-work.jpg'
@@ -7,6 +8,17 @@ import tortellini from './assets/nakayama/tortellini.jpg'
 import agnolotti from './assets/nakayama/agnolotti.jpg'
 import miyotaForest from './assets/nakayama/miyota-forest.jpg'
 import projectMeeting from './assets/nakayama/project-meeting.jpg'
+import chefTomohide from './assets/nakayama/chef-tomohide.png'
+import chefKitchen from './assets/nakayama/chef-kitchen.jpg'
+import touchDough from './assets/nakayama/touch-dough.jpg'
+import asamaWinter from './assets/nakayama/asama-winter.jpg'
+import asamaRoad from './assets/nakayama/asama-road.jpg'
+import miyotaSite from './assets/nakayama/miyota-site.jpg'
+import miyotaBirch from './assets/nakayama/miyota-birch.jpg'
+import handPasta from './assets/nakayama/hand-pasta.jpg'
+import pannacotta from './assets/nakayama/pannacotta.jpg'
+import bisquePasta from './assets/nakayama/bisque-pasta.jpg'
+import appleDessert from './assets/nakayama/apple-dessert.jpg'
 
 type PageId = 'home' | 'cucina' | 'chef' | 'experience' | 'course' | 'projects' | 'visit' | 'reserve'
 
@@ -133,7 +145,6 @@ function Header({
           ))}
           <a href="#/reserve" aria-current={page === 'reserve' ? 'page' : undefined}>ご予約</a>
         </nav>
-        <p>MIYOTA, NAGANO</p>
       </div>
     </header>
   )
@@ -168,7 +179,7 @@ function HomePage({ onOpeningProgress }: { onOpeningProgress: (complete: boolean
           <p>お料理は、おまかせのコースでご用意します。内容も順番も、素材の状態や季節に応じて変わります。</p>
           <TextLink href="#/course">コースのご案内</TextLink>
         </div>
-        <img src={tortellini} alt="赤海老とリコッタチーズのトルテッリーニ" />
+        <img src={bisquePasta} alt="ビスクソースと赤海老を合わせた手打ちパスタ" />
       </section>
 
       <section className="miyota-feature">
@@ -255,7 +266,6 @@ function HomeOpening({ onProgress }: { onProgress: (complete: boolean) => void }
         <div className="opening-panel opening-panel-bottom" style={{ transform: `translateY(${100 * reveal}%)` }} />
         <div className="opening-logo" style={logoStyle} aria-hidden={shift > 0.9}>
           <img src={brand} alt="NAKAYAMA da arte" />
-          <p>MIYOTA, NAGANO</p>
         </div>
         <div className="opening-copy" style={{ opacity: copyReveal, transform: `translateY(${28 * (1 - copyReveal)}px)` }}>
           <p className="eyebrow">NAKAYAMA DA ARTE / MIYOTA, NAGANO</p>
@@ -271,7 +281,7 @@ function HomeOpening({ onProgress }: { onProgress: (complete: boolean) => void }
 function CuisinePage() {
   return (
     <>
-      <PageHero eyebrow="OUR CHALLENGE" title="NAKAYAMAの挑戦" image={handsWork} alt="手打ちパスタを仕立てる手元" />
+      <PageHero eyebrow="OUR CHALLENGE" title="NAKAYAMAの挑戦" image={touchDough} alt="生地の状態を指先で確かめる手元" />
 
       <section className="intro-grid section-pad">
         <p className="eyebrow">COOKING WITH WHAT IS HERE, TODAY</p>
@@ -308,7 +318,7 @@ function CuisinePage() {
       </section>
 
       <section className="editorial-block dark-section">
-        <div className="editorial-image"><img src={risotto} alt="イカスミのリゾット" /></div>
+        <div className="editorial-image"><img src={risotto} alt="甲殻類の旨みを閉じ込めたイカスミのリゾット" /></div>
         <div className="editorial-copy">
           <p className="eyebrow">MANTECARE</p>
           <h2>温度を、見続ける。</h2>
@@ -355,7 +365,7 @@ function CuisinePage() {
 function ChefPage() {
   return (
     <>
-      <PageHero eyebrow="THE CHEF" title="中山友秀" image={handsHero} alt="中山友秀が手打ちパスタを手のひらにのせる様子" />
+      <PageHero eyebrow="THE CHEF" title="中山友秀" image={chefTomohide} alt="シェフ 中山友秀" />
 
       <section className="chef-intro section-pad">
         <div>
@@ -374,7 +384,7 @@ function ChefPage() {
           <h2>外から眺めるのではなく、文化の内側で学ぶ。</h2>
           <p>2006年にイタリアへ。ピエモンテ、トスカーナ、エミリア＝ロマーニャの厨房で経験を重ねました。地方ごとに料理が違う理由を、日々の仕事と暮らしのなかで知りました。</p>
         </div>
-        <img src={handsWork} alt="パスタを指先で形づくる中山友秀の手" />
+        <img src={chefKitchen} alt="厨房で手打ちパスタを仕立てる中山友秀" />
       </section>
 
       <section className="career section-pad">
@@ -416,7 +426,7 @@ function CoursePage() {
       <PageTitle eyebrow="THE COURSE" title="コースのご案内" intro="その日の食材から組み立てる、おまかせのコースをご用意しています。" />
 
       <section className="course-visual section-pad">
-        <img src={agnolotti} alt="紫色の器に盛りつけたアニョロッティ" />
+        <img src={appleDessert} alt="信州の林檎とキャラメルを使ったドルチェ" />
       </section>
 
       <section className="course-details section-pad">
@@ -436,7 +446,7 @@ function CoursePage() {
       </section>
 
       <section className="nature-course section-pad">
-        <img src={miyotaForest} alt="光が差し込む御代田の森" />
+        <img src={miyotaBirch} alt="光が差し込む御代田の白樺林" />
         <div>
           <p className="eyebrow">FROM OUTSIDE TO THE TABLE</p>
           <h2>自然のなかから始まる、食事の時間。</h2>
@@ -458,32 +468,32 @@ function CoursePage() {
 
 const experienceFrames = [
   {
-    image: miyotaForest,
-    alt: '御代田の木立',
+    image: asamaWinter,
+    alt: '御代田から望む冬の浅間山',
     label: 'ARRIVAL',
     number: '01',
     title: '浅間山のふもとへ。',
     body: '旅の目的地として御代田へ。木々の気配と、その日の空気のなかから、食事の時間が始まります。',
   },
   {
-    image: handsHero,
-    alt: '手のひらにのせた小さな手打ちパスタ',
+    image: tortellini,
+    alt: '赤海老とリコッタチーズのトルテッリーニ',
     label: 'APERITIVO',
     number: '02',
     title: 'まずは、外でひと口。',
     body: '食前酒と小さな前菜を外で楽しみ、季節と土地へ感覚をひらいてから、店内へ進みます。',
   },
   {
-    image: risotto,
-    alt: 'コースで提供する料理の一例',
+    image: bisquePasta,
+    alt: 'ビスクソースと赤海老を合わせた手打ちパスタ',
     label: 'AT THE TABLE',
     number: '03',
     title: '十の席で、その夜のコースを。',
     body: '営業は夜、一日一回。届いた食材から組み立てた料理を、夫婦二人で一組ずつの客へ届けます。',
   },
   {
-    image: agnolotti,
-    alt: '紫の器に盛りつけたアニョロッティ',
+    image: appleDessert,
+    alt: '信州の林檎とキャラメルを使ったドルチェ',
     label: 'AFTERGLOW',
     number: '04',
     title: '余韻を、旅の記憶に。',
@@ -574,20 +584,11 @@ function ExperienceJourney() {
         <div className="experience-copy">
           <div className="experience-count"><strong>{experienceFrames[activeFrame].number}</strong><span>/ 04</span></div>
           <div className="experience-words" aria-live="polite">
-            {experienceFrames.map((item, index) => {
-              const visibility = Math.max(0, 1 - Math.abs(position - index))
-              return (
-                <article
-                  key={item.label}
-                  className={activeFrame === index ? 'is-active' : ''}
-                  style={{ opacity: visibility, transform: `translateY(${(index - position) * 18}px)` }}
-                >
-                  <p className="eyebrow">{item.label}</p>
-                  <h2>{item.title}</h2>
-                  <p>{item.body}</p>
-                </article>
-              )
-            })}
+            <article className="is-active" key={experienceFrames[activeFrame].label}>
+              <p className="eyebrow">{experienceFrames[activeFrame].label}</p>
+              <h2>{experienceFrames[activeFrame].title}</h2>
+              <p>{experienceFrames[activeFrame].body}</p>
+            </article>
           </div>
         </div>
         <div className="experience-track" aria-hidden="true"><span style={{ transform: `scaleY(${progress})` }} /></div>
@@ -603,7 +604,7 @@ function ProjectsPage() {
       <PageTitle eyebrow="PROJECTS" title="プロジェクト" intro="御代田に店をひらくまでの過程も、NAKAYAMAの営みの一部です。土地と向き合うこと、自分たちの原点を問い直すこと。その記録と、現在進行する試みを紹介します。" />
 
       <article className="project-story project-story-forest">
-        <div className="project-story-image"><img src={miyotaForest} alt="御代田の森" /></div>
+        <div className="project-story-image"><img src={miyotaSite} alt="御代田の新しい店の建設地" /></div>
         <div className="project-story-copy">
           <p className="eyebrow">PROJECT 01 / MIYOTA</p>
           <h2>御代田に店をひらくまで</h2>
@@ -634,7 +635,7 @@ function VisitPage() {
     <>
       <PageTitle eyebrow="VISIT" title="ご来店案内" intro="NAKAYAMA da arteは、長野県御代田町、浅間山のふもとにあります。旅の一つの目的として、お越しください。" />
 
-      <section className="visit-image"><img src={miyotaForest} alt="NAKAYAMA da arteがある御代田の自然" /></section>
+      <section className="visit-image"><img src={asamaRoad} alt="御代田から望む浅間山" /></section>
 
       <section className="visit-details section-pad">
         <div>
@@ -678,7 +679,7 @@ function ReservePage() {
             <p><span>SEATS</span>最大10席</p>
           </div>
         </div>
-        <div className="reserve-page-image"><img src={handsHero} alt="手のひらにのせた手打ちパスタ" /></div>
+        <div className="reserve-page-image"><img src={handPasta} alt="手仕事で仕立てたタリオリーニ" /></div>
       </section>
     </>
   )
@@ -709,11 +710,6 @@ function TextLink({ href, children }: { href: string; children: React.ReactNode 
 
 const dishes = [
   {
-    image: risotto,
-    alt: 'イカスミのリゾット',
-    caption: '甲殻類の旨みを閉じ込めたイカスミのリゾット。サフラン香るお米のクレーマ',
-  },
-  {
     image: tortellini,
     alt: 'トルテッリーニ',
     caption: '赤海老とリコッタチーズのトルテッリーニ',
@@ -722,6 +718,11 @@ const dishes = [
     image: agnolotti,
     alt: 'アニョロッティ',
     caption: 'アニョロッティ・ダル・プリン',
+  },
+  {
+    image: pannacotta,
+    alt: '苺のゼリーで包んだパンナコッタ',
+    caption: '苺のゼリーで覆ったパンナコッタ',
   },
 ]
 
@@ -769,11 +770,12 @@ function DishGallery() {
         ))}
       </div>
 
-      {selected !== null && (
+      {selected !== null && createPortal(
         <div className="lightbox" role="dialog" aria-modal="true" aria-label="料理写真">
-          <button className="lightbox-close" type="button" onClick={() => setSelected(null)} aria-label="写真を閉じる">閉じる ×</button>
+          <button className="lightbox-close" type="button" onClick={() => setSelected(null)} aria-label="写真を閉じる" autoFocus>閉じる ×</button>
           <div
             className="lightbox-stage"
+            onClick={(event) => { if (event.target === event.currentTarget) setSelected(null) }}
             onTouchStart={(event) => { touchStart.current = event.touches[0].clientX }}
             onTouchEnd={onTouchEnd}
           >
@@ -786,7 +788,8 @@ function DishGallery() {
               <button type="button" onClick={() => move(1)} aria-label="次の写真">→</button>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body,
       )}
     </>
   )
@@ -1088,7 +1091,7 @@ function ReservationCta() {
 function Footer() {
   return (
     <footer className="site-footer">
-      <div className="footer-brand"><img src={brand} alt="NAKAYAMA da arte" /><p>MIYOTA, NAGANO<br />BY RESERVATION ONLY</p></div>
+      <div className="footer-brand"><img src={brand} alt="NAKAYAMA da arte" /><p>BY RESERVATION ONLY</p></div>
       <nav aria-label="フッターナビゲーション">
         {navigation.map((item) => <a key={item.id} href={item.href}>{item.label}</a>)}
         <a href="#/reserve">ご予約</a>

@@ -238,8 +238,8 @@ p { line-height: 2; }
 .dish figcaption { display: grid; grid-template-columns: 34px 1fr; gap: 10px; padding-top: 16px; color: #595349; font-family: var(--serif); font-size: 13px; line-height: 1.8; }
 .dish figcaption span { color: var(--muted); font: 9px/2.6 var(--sans); letter-spacing: .08em; }
 
-.lightbox { position: fixed; z-index: 300; inset: 0; display: grid; grid-template-rows: auto 1fr auto; padding: max(18px, env(safe-area-inset-top)) 18px max(20px, env(safe-area-inset-bottom)); color: var(--paper); background: rgba(18, 20, 18, .98); animation: lightbox-in .35s ease both; }
-.lightbox-close { justify-self: end; min-width: 72px; min-height: 48px; padding: 0; border: 0; color: inherit; background: transparent; font-size: 11px; letter-spacing: .08em; cursor: pointer; }
+.lightbox { position: fixed; z-index: 1000; inset: 0; display: grid; grid-template-rows: auto 1fr auto; padding: max(18px, env(safe-area-inset-top)) 18px max(20px, env(safe-area-inset-bottom)); color: var(--paper); background: rgba(18, 20, 18, .98); animation: lightbox-in .35s ease both; }
+.lightbox-close { position: fixed; z-index: 1001; top: max(18px, env(safe-area-inset-top)); right: 18px; min-width: 84px; min-height: 48px; padding: 0 12px; border: 1px solid rgba(242,238,229,.35); color: inherit; background: rgba(18,20,18,.78); font-size: 11px; letter-spacing: .08em; cursor: pointer; }
 .lightbox-stage { display: grid; place-items: center; min-height: 0; touch-action: pan-y; }
 .lightbox-stage img { width: 100%; max-height: 65svh; object-fit: contain; animation: lightbox-image-in .5s cubic-bezier(.22, 1, .36, 1) both; }
 .lightbox-caption { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 18px; padding-top: 20px; }
@@ -420,7 +420,7 @@ p { line-height: 2; }
   .dish:nth-child(2) { margin-top: 9vw; }
   .dish:nth-child(3) { grid-column: auto; }
   .lightbox { grid-template-columns: minmax(0, 1fr) 330px; grid-template-rows: auto 1fr; padding: 28px 36px; }
-  .lightbox-close { grid-column: 2; grid-row: 1; }
+  .lightbox-close { top: 28px; right: 36px; }
   .lightbox-stage { grid-column: 1; grid-row: 1 / span 2; padding: 20px 5vw 20px 0; }
   .lightbox-stage img { max-height: 88svh; }
   .lightbox-caption { grid-column: 2; grid-row: 2; align-self: end; display: block; padding: 0 0 24px; }
