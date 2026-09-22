@@ -1,0 +1,22 @@
+.people-profile{max-width:1080px;margin:0 auto 120px;padding:0 40px;display:grid;grid-template-columns:minmax(0,.65fr) minmax(0,1fr);gap:80px;align-items:center}
+.people-profile>img{width:100%;height:auto;max-height:520px;object-fit:contain}
+.people-profile h2{font-size:38px;font-weight:400;margin:20px 0}
+.people-profile p,.people-history>p{line-height:2.2}
+.people-timeline{max-width:1200px;margin:auto;padding:0 45px 100px}
+.people-milestone{display:grid;grid-template-columns:210px minmax(0,1fr);gap:65px;position:relative;padding:0 0 110px}
+.people-milestone::before{content:"";position:absolute;left:225px;top:10px;bottom:0;width:1px;background:#bcc5b1}
+.people-milestone::after{content:"";position:absolute;left:220px;top:9px;width:11px;height:11px;border-radius:50%;background:#6a795f}
+.people-year{position:sticky;top:125px;align-self:start}
+.people-year>span{font-size:36px;font-family:Georgia,serif;letter-spacing:.04em}
+.people-year>p{font-size:13px;line-height:1.8}
+.people-history h2{font-size:clamp(26px,3vw,35px);font-weight:400;line-height:1.7;margin:0 0 28px}
+.people-album{display:grid;grid-template-columns:1fr 1fr;gap:30px 22px;margin-top:36px;align-items:start}
+.people-album figure{margin:0;min-width:0}
+.people-album figure:first-child:nth-last-child(3){grid-column:1/-1}
+.people-album img{display:block;width:100%;height:auto;object-fit:contain}
+.people-album figcaption{font-size:12px;line-height:1.8;color:#677260;margin-top:12px}
+.people-turning-point{background:#e9ecdf;padding:35px;margin:35px 0}
+.people-turning-point h3{font-size:27px;line-height:1.7;font-weight:400;margin:20px 0}
+.people-turning-point p{line-height:2;font-size:15px}
+@media(max-width:750px){.people-profile{display:block;padding:0 26px;margin-bottom:70px}.people-profile>img{max-height:380px;margin-bottom:35px}.people-profile h2{font-size:30px}.people-timeline{padding:0 24px 50px}.people-milestone{display:block;padding:0 0 65px 22px}.people-milestone::before{left:0}.people-milestone::after{left:-5px}.people-year{position:static;margin-bottom:28px}.people-year>span{font-size:30px}.people-album{gap:25px;grid-template-columns:1fr}.people-album figure{grid-column:auto!important}.people-turning-point{padding:24px}.people-turning-point h3{font-size:24px}}
+@media(prefers-reduced-motion:reduce){.people-year{position:static}}
